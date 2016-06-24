@@ -1,0 +1,11 @@
+%h2 Create new map
+
+= form_for(@map, url: { controller: :map, action: :create }) do |f|
+	= f.label :name, 'Stage name'
+	= f.text_field :name
+	= f.label :creater, 'Your name'
+	= f.text_field :creater
+	= f.submit 'Create Stage!', class: 'btn btn-primary'
+	%br
+	%br
+	= render partial: 'map', locals: { map: @map }

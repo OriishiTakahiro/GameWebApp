@@ -52,6 +52,10 @@ gem 'haml-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'honoka-rails', '>= 3.3.6.3'
 
+gem 'pry-rails'
+
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

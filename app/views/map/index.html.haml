@@ -1,0 +1,29 @@
+%h2 Listing Maps
+%table{class: 'table table-inverse'}
+	%thead
+		%tr
+			%th
+				No
+			%th
+				Name
+			%th
+				Creater
+			%th
+				Uploaded date
+			%th
+				Cleared
+	%tbody
+		- @maps.each do |row|
+			%tr
+				%th
+					= row.id
+				%th
+					= row.name
+				%th
+					= row.creater
+				%th
+					= row.created_at
+				%th
+					= row.cleared
+= paginate @maps
+= link_to 'create new map', { controller: :map, action: :new }
