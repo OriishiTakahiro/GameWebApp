@@ -2,7 +2,7 @@ class Map < ApplicationRecord
 	
 	@@WIDTH = 15
 	@@HEIGHT = 8
-	@@PANELS = { -3 => 'rock', -2 => 'jewel', -1 => 'portal' }
+	@@PANELS = { -3 => 'rock', -2 => 'jewel', -1 => 'portal', 0 => 'empty'}
 	@@WIDTH.freeze; @@HEIGHT.freeze; @@PANELS.freeze;
 
 	def self.WIDTH
