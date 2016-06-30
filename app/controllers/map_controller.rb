@@ -29,9 +29,12 @@ class MapController < ApplicationController
 	## --- for API --- ##
 
 	def get_maplist
+		map = Map.all
+		render json: map
 	end
 
 	def get_mapdata
+		render json: Map.find_by(id: params[:id]).map_data
 	end
 
 	def post_report
