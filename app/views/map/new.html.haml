@@ -1,11 +1,14 @@
 %h2 Create a new map
 
 = form_for(@map, url: { controller: :map, action: :create }) do |f|
-	= f.label :name, 'Stage name'
-	= f.text_field :name
-	= f.label :creater, 'Your name'
-	= f.text_field :creater
-	= f.submit 'Create Stage!', class: 'btn btn-primary'
-	%br
-	%br
-	= render partial: 'map', locals: { map: @map }
+	%div{class: :field}
+		= f.label :name, 'Stage name'
+		= f.text_field :name
+	%div{class: :field}
+		= f.label :creater, 'Your name'
+		= f.text_field :creater
+	= f.hidden_field :map_data, value: :test
+	%div{class: :actions}
+		= f.submit 'Create Stage!', name: :commit, class: 'btn btn-primary', data: {disable_with: 'Creating...' }
+%br
+= render partial: 'map', locals: { map: @map }

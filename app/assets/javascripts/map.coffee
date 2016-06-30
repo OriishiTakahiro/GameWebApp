@@ -2,6 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+# マップデータを隠しフィールドに保存
+updateMapData = ->
+	map_arr = []
+	window.panels.forEach( (panel, i) ->
+		# もしパネルがマップの左端であれば二次元リストに新しい行を作る
+		if(panel.id.split(':')[1] is '0')
+			map_arr.push([panel.getAttribute('value')])
+		else
+			map_arr[map_arr.length-1].push(panel.getAttribute('value'))
+	)
+	document.forms[0].elements.map_map_data.value = JSON.stringify(map_arr)
+	console.log document.forms[0].elements.map_map_data.value
+
 # ドラッグ開始時の処理
 eventOnDragStart = (event) ->
 	console.log 'drag start'
@@ -17,8 +30,9 @@ eventOnDragOver = (event) ->
 eventOnDrop = (event) ->
 	console.log 'dropped'
 	target = document.getElementById(event.dataTransfer.getData('text/plain'))
-	event.currentTarget.setAttribute('value', target.value)
+	event.currentTarget.setAttribute('value', target.getAttribute('value'))
 	event.currentTarget.setAttribute('src', target.src)
+	updateMapData();
 	event.preventDefault()
 
 # HTMLのDOMの読み込み完了後実行
@@ -26,17 +40,20 @@ $(document).on('ready page:load',  ->
 
 	console.log 'ready'
 
-	panels = document.getElementsByName('map_panel')		# マップ上のパネル
-	obstacles = document.getElementsByName('obstacle')	# 障害物
+	window.panels = document.getElementsByName('map_panel')		# マップ上のパネル
+	window.obstacles = document.getElementsByName('obstacle')	# 障害物
 
-	panels.forEach((panel, i) ->
+	window.panels.forEach((panel, i) ->
 		if(i != 0 && i != (panels.length-1))
 			panel.addEventListener('dragover', eventOnDragOver)
 			panel.addEventListener('drop', eventOnDrop)
 	)
 
-	obstacles.forEach((obstacle, i) ->
+	window.obstacles.forEach((obstacle, i) ->
 		obstacle.addEventListener('dragstart', eventOnDragStart)
 	)
+	console.log window.panels[0].getAttribute('value')
+	
+	updateMapData();
 
 )

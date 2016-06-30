@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
 		resources :map
 
+		get 'get_maplist', to: 'map#get_maplist'
+		get 'get_mapdata', to: 'map#get_mapdata'
+		post 'post_report', to: 'map#post_report'
+
 	end
 
 end

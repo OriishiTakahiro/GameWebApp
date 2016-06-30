@@ -1,4 +1,7 @@
 %h2 Listing Maps
+- if(flash[:notice])
+	%div{class: 'alert alert-dismissible alert-success'}
+		= flash[:notice]
 %table{class: 'table table-inverse'}
 	%thead
 		%tr

@@ -11,6 +11,10 @@ class MapController < ApplicationController
 	end
 
 	def create
+		maphash = params[:map]
+		#render text: maphash.keys.map { |key| "#{key}, #{maphash[key]}" }
+		Map.create!( name: maphash[:name], creater: maphash[:creater], map_data: maphash[:map_data] )
+		redirect_to :root, notice: 'マップの生成が完了しました.'
 	end
 
 	def edit
