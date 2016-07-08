@@ -52,8 +52,7 @@ $(document).on('ready page:load',  ->
 	window.obstacles.forEach((obstacle, i) ->
 		obstacle.addEventListener('dragstart', eventOnDragStart)
 	)
-	console.log window.panels[0].getAttribute('value')
-	
+
 	updateMapData();
 
 )

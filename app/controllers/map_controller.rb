@@ -14,7 +14,7 @@ class MapController < ApplicationController
 		maphash = params[:map]
 		#render text: maphash.keys.map { |key| "#{key}, #{maphash[key]}" }
 		Map.create!( name: maphash[:name], creater: maphash[:creater], map_data: maphash[:map_data] )
-		redirect_to :root, notice: 'マップの生成が完了しました.'
+		redirect_to :root, notice: 'New map is saved on server !'
 	end
 
 	def edit
@@ -29,8 +29,8 @@ class MapController < ApplicationController
 	## --- for API --- ##
 
 	def get_maplist
-		map = Map.all
-		render json: map
+		mapdat = Map.all
+		render json: mapdat.map{ |e| { id: e.id, name: e.name, cleared: e.cleared, created_at: e.created_at }}
 	end
 
 	def get_mapdata

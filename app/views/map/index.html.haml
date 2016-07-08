@@ -25,8 +25,9 @@
 				%th
 					= row.creater
 				%th
-					= row.created_at
+					= row.created_at.strftime('%Y/%m/%d %H:%M:%S')
 				%th
 					= row.cleared
 = paginate @maps
+%br
 = link_to 'create a new map', { controller: :map, action: :new }
