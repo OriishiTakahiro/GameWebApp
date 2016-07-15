@@ -24,6 +24,9 @@ class MapController < ApplicationController
 	end
 
 	def destroy
+		tmp = Map.find_by(id: params[:id])
+		tmp.destroy if(not tmp.nil?)
+		redirect_to :root
 	end
 
 	## --- for API --- ##

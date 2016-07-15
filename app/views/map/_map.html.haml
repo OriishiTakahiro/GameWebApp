@@ -1,7 +1,8 @@
 %div{ style: 'float:left;border-style: solid ; border-width: 1px; padding: 10px 5px 10px 20px;' }
 	- Map.HEIGHT.times do |i|
-		- Map.WIDTH.times do |j|
-			= image_tag map.get_filename(i, j), id: "#{i}:#{j}" , value: map.get_index(i, j), size: '60x60', dropzpne: :copy, draggable: false, name: 'map_panel'
+		%nobr
+			- Map.WIDTH.times do |j|
+				= image_tag map.get_filename(i, j), id: "#{i}:#{j}" , value: map.get_index(i, j), size: '60x60', dropzpne: :copy, draggable: false, name: 'map_panel'
 		%br
 %div{ style: 'float:left; padding: 10px 5px 10px 20px;' }
 	%h3 Obstacles

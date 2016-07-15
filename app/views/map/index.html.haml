@@ -28,6 +28,8 @@
 					= row.created_at
 				%th
 					= row.cleared
+				%th
+					= link_to 'destroy', { controller: :map, action: :destroy, id: row.id }, { method: :delete }
 = paginate @maps
 %br
 = link_to 'create a new map', { controller: :map, action: :new }
