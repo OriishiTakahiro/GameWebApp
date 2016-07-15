@@ -29,7 +29,7 @@
 				%th
 					= row.cleared
 				%th
-					= link_to 'destroy', { controller: :map, action: :destroy, id: row.id }, { method: :delete }
+					= link_to 'destroy', { controller: :map, action: :destroy, id: row.id }, method: :delete, data: {confirm: "#{row.name}を削除しますが本当によろしいですか?"}
 = paginate @maps
 %br
 = link_to 'create a new map', { controller: :map, action: :new }
