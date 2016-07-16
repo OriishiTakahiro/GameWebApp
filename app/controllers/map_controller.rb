@@ -33,7 +33,7 @@ class MapController < ApplicationController
 
 	def get_maplist
 		mapdat = Map.all
-		render json: mapdat.map{ |e| { id: e.id, name: e.name, cleared: e.cleared, created_at: e.created_at }}
+		render json: mapdat.map{ |e| { id: e.id, name: e.name, cleared: e.cleared, min_cost: e.min_cost ,created_at: e.created_at }}
 	end
 
 	def get_mapdata
@@ -43,7 +43,7 @@ class MapController < ApplicationController
 	def post_report
 		map = Map.find_by(id: params[:id])
 		if(not map.nil?) then
-			map.min_cost = params[:cost] if(map.min_cost.nil?  or map.min_cost > params[:cost].to_i)
+			map.min_cost = params[:cost].to_i if(map.min_cost.nil? or map.min_cost > params[:cost].to_i)
 			map.cleared += 1
 			map.save
 			render text: :succeeded
