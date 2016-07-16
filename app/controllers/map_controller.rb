@@ -33,7 +33,7 @@ class MapController < ApplicationController
 
 	def get_maplist
 		mapdat = Map.all
-		render json: mapdat.map{ |e| { id: e.id, name: e.name, cleared: e.cleared, min_cost: e.min_cost ,created_at: e.created_at }}
+		render json: mapdat.map{ |e| { id: e.id, name: e.name, creater: e.creater, cleared: e.cleared, min_cost: e.min_cost ,created_at: e.created_at }}
 	end
 
 	def get_mapdata
