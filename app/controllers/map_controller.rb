@@ -41,6 +41,10 @@ class MapController < ApplicationController
 	end
 
 	def post_report
+		map = Map.find_by(id: params[:id])
+		map.min_cost = params[:cost] if(map.min_cost > params[:cost].to_i)
+		map.cleared += 1
+		map.save
 	end
 
 end
