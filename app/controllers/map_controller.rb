@@ -42,13 +42,13 @@ class MapController < ApplicationController
 
 	def post_report
 		map = Map.find_by(id: params[:id])
-		if(map.nil?) then
-			map.min_cost = params[:cost] if(map.min_cost > params[:cost].to_i)
+		if(not map.nil?) then
+			map.min_cost = params[:cost] if(map.min_cost.nil?  or map.min_cost > params[:cost].to_i)
 			map.cleared += 1
 			map.save
-			render text: map.to_s
+			render text: :succeeded
 		else
-			render text: 'failed'
+			render text: :failed
 		end
 	end
 
