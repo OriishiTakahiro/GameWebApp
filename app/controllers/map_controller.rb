@@ -45,6 +45,7 @@ class MapController < ApplicationController
 		map.min_cost = params[:cost] if(map.min_cost > params[:cost].to_i)
 		map.cleared += 1
 		map.save
+		render text: map.to_s
 	end
 
 end
